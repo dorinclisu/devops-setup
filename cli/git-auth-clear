@@ -1,0 +1,15 @@
+#!/bin/sh
+SERVER=$1
+
+
+if [ -z "${SERVER}" ]; then
+    echo "Usage: $0 <SERVER>"
+    exit 1
+fi
+
+HOST=$(echo "$SERVER" | sed 's|^https://||' | sed 's|/.*$||')
+CRED_FILE="${HOME}/.git-credentials.$HOST"
+
+git config --global --unset credential.$SERVER.helper
+
+rm -f "$CRED_FILE"

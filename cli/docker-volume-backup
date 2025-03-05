@@ -1,5 +1,4 @@
 #!/bin/sh
-
 VOLUME_NAME=$1
 BACKUP_DIR=$2
 echo "Usage: $0 VOLUME_NAME BACKUP_DIR"
