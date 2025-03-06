@@ -1,4 +1,5 @@
 [[runners]]
+  executor = "docker"
   [runners.docker]
     image = "docker:stable"
     host = "unix:///var/run/docker.sock"
