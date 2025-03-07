@@ -1,9 +1,10 @@
 #!/bin/sh
 SERVER=$1
-TOKEN=$2
+USER=$2
+PASS=$3
 
-if [ -z "${SERVER}" ] || [ -z "${TOKEN}" ]; then
-    echo "Usage: $0 <SERVER> <TOKEN>"
+if [ -z "${SERVER}" ] || [ -z "${USER}" ] || [ -z "${PASS}" ]; then
+    echo "Usage: $0 <SERVER> <USER> <PASS>"
     exit 1
 fi
 
@@ -15,6 +16,6 @@ git config --global credential.$SERVER.helper "store --file $CRED_FILE"
 cat << EOF | git credential approve
 protocol=https
 host=$HOST
-username=_
-password=$TOKEN
+username=$USER
+password=$PASS
 EOF
