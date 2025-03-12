@@ -19,12 +19,18 @@ configs:
     content: |
       #!/bin/bash
       set -e
+
+      DOCKER_GID=$(stat -c '%g' /var/run/docker.sock)
+      sudo groupmod -g $DOCKER_GID docker || sudo groupadd -g $DOCKER_GID docker
+      sudo usermod -aG docker runner
+
+      sudo chown runner _work
       cp -a /config/.runner .
       cp -a /config/.path .
       cp -a /config/.credentials .
       cp -a /config/.credentials_rsaparams .
-      exec "$@"
 
+      exec "$@"
 
 volumes:
   config:
