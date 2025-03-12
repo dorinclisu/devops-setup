@@ -10,6 +10,24 @@ services:
       - ./config/.credentials_rsaparams:/home/runner/.credentials_rsaparams
       - ./config/.path:/home/runner/.path
       - workspace:/home/runner/_work
+    configs:
+      - source: entrypoint-script
+        target: /entrypoint.sh
+        mode: 0755
+    entrypoint: /entrypoint.sh
+
+
+configs:
+  entrypoint-script:
+    content: |
+      #!/bin/bash
+      set -e
+
+      chown -R runner:runner /home/runner/.runner /home/runner/.credentials /home/runner/.credentials_rsaparams /home/runner/.path
+      chmod 600 /home/runner/.credentials_rsaparams
+      chmod 644 /home/runner/.runner /home/runner/.credentials /home/runner/.path
+
+      exec "$@"
 
 
 volumes:
