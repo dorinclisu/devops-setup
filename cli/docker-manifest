@@ -22,3 +22,4 @@ do
 done
 
 docker manifest push $IMAGE:$TAG
+# see https://github.com/estesp/manifest-tool

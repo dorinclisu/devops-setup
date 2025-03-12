@@ -1,6 +1,9 @@
+concurrent = 2
 [[runners]]
   executor = "docker"
   [runners.docker]
     image = "docker:stable"
+    allowed_pull_policies = ["always", "if-not-present"]
+    pull_policy = "if-not-present"
     host = "unix:///var/run/docker.sock"
     volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock"]
