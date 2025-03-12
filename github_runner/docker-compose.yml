@@ -5,6 +5,10 @@ services:
     command: ./run.sh
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/.runner:/home/runner/.runner
+      - ./config/.credentials:/home/runner/.credentials
+      - ./config/.credentials_rsaparams:/home/runner/.credentials_rsaparams
+      - ./config/.path:/home/runner/.path
       - workspace:/home/runner/_work
 
 
