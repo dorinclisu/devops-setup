@@ -1,0 +1,12 @@
+services:
+  github-runner:
+    image: ghcr.io/actions/actions-runner:latest
+    restart: always
+    command: ./run.sh
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - workspace:/home/runner/_work
+
+
+volumes:
+  workspace:
