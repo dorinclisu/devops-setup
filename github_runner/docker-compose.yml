@@ -5,7 +5,7 @@ services:
     command: ./run.sh
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - config:/home/runner/config
+      - config:/config
       - workspace:/home/runner/_work
     configs:
       - source: entrypoint.sh
@@ -19,10 +19,10 @@ configs:
     content: |
       #!/bin/bash
       set -e
-      cp -pr config/.runner .
-      cp -p config/.path .
-      cp -p config/.credentials .
-      cp -p config/.credentials_rsaparams .
+      cp -a /config/.runner .
+      cp -a /config/.path .
+      cp -a /config/.credentials .
+      cp -a /config/.credentials_rsaparams .
       exec "$@"
 
 
