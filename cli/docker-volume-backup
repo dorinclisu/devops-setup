@@ -5,6 +5,7 @@ echo "Usage: $0 VOLUME_NAME BACKUP_DIR"
 
 set -e
 
+BACKUP_DIR=$(realpath "$BACKUP_DIR")
 docker run --rm -v $VOLUME_NAME:/data -v $BACKUP_DIR:/backup alpine tar cvf /backup/$VOLUME_NAME.tar /data
 
 echo
